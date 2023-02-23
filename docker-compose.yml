@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  oracledb:
+    image: container-registry.oracle.com/database/enterprise
+    environment:
+      - ORACLE_SID=${ORACLE_SID}
+      - ORACLE_PDB=${ORACLE_PDB}
+      - ORACLE_PWD=${ORACLE_PWD}
+    ports:
+      - "1521:1521"
+      - "5500:5500"
+    volumes:
+      - data:/opt/oracle/oradata
+volumes:
+  data:
