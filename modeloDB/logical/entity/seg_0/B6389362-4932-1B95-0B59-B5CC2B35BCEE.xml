@@ -1,0 +1,71 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="B6389362-4932-1B95-0B59-B5CC2B35BCEE" name="hospital">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-23 22:48:48 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="nombre" id="8E0A4E9A-27F3-B66A-9AC5-2042656C5307">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-23 22:50:18 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="direccion" id="1D3B1188-4736-E1BD-B3E7-E905059B2C99">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-23 22:50:34 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_hospital" id="41E1AB2C-01DA-4F81-4016-3A22A708FF0D">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-24 01:02:25 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="9E6977C9-BF57-3010-8533-D833A712EE99" name="hospital PK">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-24 01:02:39 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>41E1AB2C-01DA-4F81-4016-3A22A708FF0D</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,148 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="28ED8A4C-F857-4C25-6C25-BBBB704464A8" name="victima">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-23 22:53:33 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_victima" id="36599474-57AE-CB41-E077-716734A89DC6">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-23 22:53:41 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nombre" id="8F2CF1D2-D574-A895-48AD-A76AD6A01B56">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-23 22:54:01 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>25</dataTypeSize>
+<ownDataTypeParameters>25,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="apellido" id="DED1C815-4472-FE3C-9F08-B8D794CC7926">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-23 22:54:19 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="direccion" id="7BA27D2F-49C5-C598-068C-CE2529377916">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-23 22:54:39 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70</dataTypeSize>
+<ownDataTypeParameters>70,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="fecha_registro" id="E1A16115-6B17-5BE0-87D9-0565F686F378">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-23 22:55:14 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="fecha_muerte" id="183B1665-515C-AC02-4016-0895D1AE1695">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-23 22:56:58 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="estado" id="E0983029-BE23-09B9-130E-2DD8992DF145">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-23 22:57:34 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="fecha_confirmacion" id="D2F668A1-698A-7D7F-1C9C-0F62205F1D30">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-24 00:16:22 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_hospital" id="3C4FB105-928B-1665-C22E-C2984901E08C">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-24 01:02:47 UTC</createdTime>
+<generatorID>A0744DA7-E155-43EE-F8E1-F03831A17010</generatorID>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<referedAttribute>41E1AB2C-01DA-4F81-4016-3A22A708FF0D</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="B913C86B-02E6-5781-AA89-989035BD8184" name="victima PK">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-23 22:53:59 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>36599474-57AE-CB41-E077-716734A89DC6</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

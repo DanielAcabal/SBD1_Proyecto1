@@ -1,0 +1,58 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="EEC332D8-34E1-FA48-F493-57740C534BF2" name="Contacto">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-23 22:41:03 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_contacto" id="AD18BED1-9B32-4D7F-6F72-FDF79EC89448">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-23 22:41:11 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nombre" id="86BACE17-D791-5022-636A-521306459679">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-23 22:41:50 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>25</dataTypeSize>
+<ownDataTypeParameters>25,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="145C1F3A-CA6C-87C0-3F62-22E62ACCB039" name="Contacto PK">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-23 22:41:47 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>AD18BED1-9B32-4D7F-6F72-FDF79EC89448</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

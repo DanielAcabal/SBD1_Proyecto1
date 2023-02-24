@@ -1,0 +1,70 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="EC25E2D5-4388-1AF2-A698-F9198EF4E9CE" name="tratamiento">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-23 23:15:25 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_tratamiento" id="361F3903-E63D-89E3-0D39-DB38D423979A">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-23 23:15:32 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nombre" id="FCCCCC9A-7301-4659-B1AC-FEAB05FFAF74">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-23 23:50:31 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="efectividad" id="CEAF4831-7298-3C08-ED9E-7312792F39BD">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-23 23:50:44 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="F78047B3-C1BB-25C1-E737-D99F2BC600F4" name="tratamiento PK">
+<createdBy>danielacabal</createdBy>
+<createdTime>2023-02-23 23:50:30 UTC</createdTime>
+<ownerDesignName>modeloDB</ownerDesignName>
+<engineerTo>
+<item key="29F4DAF0-C384-C51D-4211-71B6DF5DAC8A" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>361F3903-E63D-89E3-0D39-DB38D423979A</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,3 +1,7 @@
 node_modules
 *.xlsx
 *.env
+**/*.localz
+**/*.local
+**/*.git
+**/*.DS_Store
