@@ -6,6 +6,7 @@ const readline = require("readline")
 
 function hola(req,res){
 	res.send("Hola")
+	console.log("[*] Hola",new Date())
 }
 function createTemp(req,res){
 	try{
@@ -25,6 +26,7 @@ function createTemp(req,res){
 		console.log("aaaaaaaa",err)
 		res.json({"message":"Error"})
 	}
+	console.log("[*] Crear temporal",new Date())
 }
 
 function loadData(req,res){
@@ -53,11 +55,64 @@ function loadData(req,res){
 		con.commit()
 		res.json({"Hola":"xd"})
 	})
+	console.log("[*] Crear temporal",new Date())
 }
 async function deleteData(req,res){
 	if(!con){return res.statusCode(500).json({"Error":"Conectarse a base de datos"})}
 	await con.execute("DELETE temporal")
 	res.status(200).json({"message":"Table 'temporal' deleted"})
+	console.log("[*] Temporal eliminado",new Date())
 }
 
-module.exports = {hola, createTemp, loadData, deleteData}
+function createModel(req,res){
+	try{
+		fs.readFile('./queries/createModel.sql', function (err,data){
+			if (err) throw err;
+			const queries = data.toString().split(";").map((val)=>`execute immediate '${val}'`)
+			con.execute(
+			`begin
+				${queries.join(";\n")};
+			 end;
+			`)
+				.catch(x=>{console.log("xd:",x);return true;})
+				.then(r=>{
+					if(r==true){
+						res.status(500).json({"Error":"Ya existe"})
+					}else{
+						res.status(200).json({"message":"Model created"})
+					}
+				})
+			})
+	}catch (err){
+		console.log("aaaaaaaa",err)
+		res.json({"message":"Error"})
+	}
+	console.log("[*] Modelo creado",new Date())
+}
+
+function deleteModel(req,res){
+	try{
+		fs.readFile('./queries/deletemodel.sql', function (err,data){
+			if (err) throw err;
+			const queries = data.toString().split(";").map((val)=>`execute immediate '${val}'`)
+			con.execute(
+			`begin
+				${queries.join(";\n")};
+			 end;
+			`)
+				.catch(x=>{console.log("xd:",x);return true;})
+				.then(r=>{
+					if(r==true){
+						res.status(500).json({"Error":"Error al eliminar modelo"})
+					}else{
+						res.status(200).json({"message":"Model deleted"})
+					}
+				})
+			})
+	}catch (err){
+		console.log("aaaaaaaa",err)
+		res.json({"message":"Error"})
+	}
+	console.log("[*] Modelo eliminado",new Date())
+}
+module.exports = {hola, createTemp, loadData, deleteData,createModel, deleteModel}
