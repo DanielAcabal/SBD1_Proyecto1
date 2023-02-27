@@ -50,7 +50,7 @@ function loadData(req,res){
 										"estado_victima,nombre_asociado ,apellido_asociado ,fecha_conocio ,contacto_fisico ,inicio_contacto ,"+
 										"fin_contacto ,nombre_hospital ,direccion_hospital ,ubicacion_victima  ,fecha_llegada ,fecha_retiro ,"+
 										"tratamiento ,efectividad,inicio_tratamiento ,fin_tratamiento ,efectividad_victima"
-		const result =  await con.executeMany(`INSERT INTO temporal (${fields}) VALUES (${binds.join(",")})`,[data[0]])
+		const result =  await con.executeMany(`INSERT INTO temporal (${fields}) VALUES (${binds.join(",")})`,data)
 		console.log(result.rowsAffected)
 		con.commit()
 		res.json({"Hola":"xd"})
@@ -68,12 +68,10 @@ function createModel(req,res){
 	try{
 		fs.readFile('./queries/createModel.sql', function (err,data){
 			if (err) throw err;
-			const queries = data.toString().split(";").map((val)=>`execute immediate '${val}'`)
-			con.execute(
-			`begin
-				${queries.join(";\n")};
-			 end;
-			`)
+			const q = data.toString().split("$")
+			const tables = q[0].split(";").map((val)=>`execute immediate '${val}'`)
+			//console.log(queries.join("; \n"))
+			con.execute(`begin\n${tables.join(";\n")};\nend;`)
 				.catch(x=>{console.log("xd:",x);return true;})
 				.then(r=>{
 					if(r==true){
@@ -82,6 +80,7 @@ function createModel(req,res){
 						res.status(200).json({"message":"Model created"})
 					}
 				})
+			con.execute("begin\n"+q[1]+"\n end;")
 			})
 	}catch (err){
 		console.log("aaaaaaaa",err)
