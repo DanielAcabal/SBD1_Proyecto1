@@ -3,6 +3,11 @@ const connection = require("../connection/connection")
 	.then(res=>con=res)
 const fs = require("fs")
 const readline = require("readline")
+let reports = []
+fs.readFile(('./queries/reports.sql'), (err,data)=>{
+	if (err) return
+	reports = data.toString().split(";")
+})
 
 function hola(req,res){
 	res.send("Hola")
@@ -110,8 +115,49 @@ function deleteModel(req,res){
 			})
 	}catch (err){
 		console.log("aaaaaaaa",err)
-		res.json({"message":"Error"})
+		res.status(500).json({"message":"Error"})
 	}
 	console.log("[*] Modelo eliminado",new Date())
 }
-module.exports = {hola, createTemp, loadData, deleteData,createModel, deleteModel}
+async function query(req,res,index){
+	try{
+		console.log(`[*] Consulta ${index+1}`,new Date())
+		const result = await con.execute(reports[index],[])
+		res.status(200).json(result.rows)
+	}catch (err){
+		console.log(err)
+		res.status(500).json({"message":"Error"})
+	}
+}
+async function query1(req,res){
+	query(req,res,0)
+}
+async function query2(req,res){
+	query(req,res,1)
+}
+async function query3(req,res){
+	query(req,res,2)
+}
+async function query4(req,res){
+	query(req,res,3)
+}
+async function query5(req,res){
+	query(req,res,4)
+}
+async function query6(req,res){
+	query(req,res,5)
+}
+async function query7(req,res){
+	query(req,res,6)
+}
+async function query8(req,res){
+	query(req,res,7)
+}
+async function query9(req,res){
+	query(req,res,8)
+}
+async function query10(req,res){
+	query(req,res,9)
+}
+module.exports = {hola, createTemp, loadData, deleteData,createModel, deleteModel
+	,query1,query2,query3,query4,query5,query6,query7,query8,query9,query10}
