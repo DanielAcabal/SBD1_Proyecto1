@@ -11,6 +11,7 @@ fs.readFile(('./queries/reports.sql'), (err,data)=>{
 
 function hola(req,res){
 	res.send("Hola")
+	console.log(con)
 	console.log("[*] Hola",new Date())
 }
 function createTemp(req,res){
@@ -86,6 +87,7 @@ function createModel(req,res){
 					}
 				})
 			con.execute("begin\n"+q[1]+"\n end;")
+				.then(r=>console.log(r))
 			})
 	}catch (err){
 		console.log("aaaaaaaa",err)

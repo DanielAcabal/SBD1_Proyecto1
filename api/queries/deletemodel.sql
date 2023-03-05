@@ -4,6 +4,7 @@ DROP TABLE observacion;
 DROP TABLE ubicacion;
 DROP TABLE victima;
 DROP TABLE tratamiento;
+DROP TABLE estado;
 DROP TABLE lugar;
 DROP TABLE hospital;
 DROP TABLE contacto;
