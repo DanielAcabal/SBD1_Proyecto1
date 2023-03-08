@@ -14,4 +14,4 @@ async function getConnection(){
 	}
 	return null
 }
-module.exports = getConnection() 
+module.exports = getConnection 

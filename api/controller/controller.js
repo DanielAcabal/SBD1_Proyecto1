@@ -1,6 +1,5 @@
 let con;
 const connection = require("../connection/connection")
-	.then(res=>con=res)
 const fs = require("fs")
 const readline = require("readline")
 let reports = []
@@ -9,15 +8,16 @@ fs.readFile(('./queries/reports.sql'), (err,data)=>{
 	reports = data.toString().split(";")
 })
 
-function hola(req,res){
+async function hola(req,res){
 	res.send("Hola")
-	console.log(con)
+	console.log(await connection())
 	console.log("[*] Hola",new Date())
 }
 function createTemp(req,res){
 	try{
-		fs.readFile('./queries/createTemp.sql', function (err,data){
+		fs.readFile('./queries/createTemp.sql', async function (err,data){
 			if (err) throw err;
+			const con = await connection()
 			con.execute(data.toString())
 				.catch(x=>x.errorNum==955)
 				.then(r=>{
@@ -27,6 +27,7 @@ function createTemp(req,res){
 						res.status(200).json({"message":"Table created"})
 					}
 				})
+			con.close()
 			})
 	}catch (err){
 		console.log("aaaaaaaa",err)
@@ -36,7 +37,6 @@ function createTemp(req,res){
 }
 
 function loadData(req,res){
-	if(!con){ return res.json({"Error":"Conectarse a la base de datos"}) }
 	const file = readline.createInterface(fs.createReadStream("DB_Excel.csv"))
 	const data = []
 	let binds = [] 
@@ -56,27 +56,32 @@ function loadData(req,res){
 										"estado_victima,nombre_asociado ,apellido_asociado ,fecha_conocio ,contacto_fisico ,inicio_contacto ,"+
 										"fin_contacto ,nombre_hospital ,direccion_hospital ,ubicacion_victima  ,fecha_llegada ,fecha_retiro ,"+
 										"tratamiento ,efectividad,inicio_tratamiento ,fin_tratamiento ,efectividad_victima"
+		const con = await connection();
 		const result =  await con.executeMany(`INSERT INTO temporal (${fields}) VALUES (${binds.join(",")})`,data)
 		console.log(result.rowsAffected)
 		con.commit()
 		res.json({"Hola":"xd"})
+		con.close()
 	})
 	console.log("[*] Crear temporal",new Date())
 }
 async function deleteData(req,res){
-	if(!con){return res.statusCode(500).json({"Error":"Conectarse a base de datos"})}
-	await con.execute("DELETE temporal")
+	const con = await connection()
+	const r = await con.execute("DELETE FROM temporal")
 	res.status(200).json({"message":"Table 'temporal' deleted"})
 	console.log("[*] Temporal eliminado",new Date())
+	console.log(r.rowsAffected)
+	con.close()
 }
 
 function createModel(req,res){
 	try{
-		fs.readFile('./queries/createModel.sql', function (err,data){
+		fs.readFile('./queries/createModel.sql', async function (err,data){
 			if (err) throw err;
 			const q = data.toString().split("$")
 			const tables = q[0].split(";").map((val)=>`execute immediate '${val}'`)
 			//console.log(queries.join("; \n"))
+			const con = await connection();
 			con.execute(`begin\n${tables.join(";\n")};\nend;`)
 				.catch(x=>{console.log("xd:",x);return true;})
 				.then(r=>{
@@ -86,21 +91,25 @@ function createModel(req,res){
 						res.status(200).json({"message":"Model created"})
 					}
 				})
-			con.execute("begin\n"+q[1]+"\n end;")
-				.then(r=>console.log(r))
+			con.commit()
+			const r = await con.execute("begin\n"+q[1]+"\n end;")
+			con.commit()
+			console.log("Filas: ",r)
+			con.close()
+			console.log("[*] Modelo creado",new Date())
 			})
 	}catch (err){
 		console.log("aaaaaaaa",err)
 		res.json({"message":"Error"})
 	}
-	console.log("[*] Modelo creado",new Date())
 }
 
 function deleteModel(req,res){
 	try{
-		fs.readFile('./queries/deletemodel.sql', function (err,data){
+		fs.readFile('./queries/deletemodel.sql', async function (err,data){
 			if (err) throw err;
 			const queries = data.toString().split(";").map((val)=>`execute immediate '${val}'`)
+			const con = await connection()
 			con.execute(
 			`begin
 				${queries.join(";\n")};
@@ -114,18 +123,22 @@ function deleteModel(req,res){
 						res.status(200).json({"message":"Model deleted"})
 					}
 				})
+			con.close()
+			console.log("[*] Modelo eliminado",new Date())
 			})
 	}catch (err){
 		console.log("aaaaaaaa",err)
 		res.status(500).json({"message":"Error"})
 	}
-	console.log("[*] Modelo eliminado",new Date())
 }
 async function query(req,res,index){
 	try{
 		console.log(`[*] Consulta ${index+1}`,new Date())
+		const con = await connection()
+		if (con==null){ throw Error("Conectarse a la base") }
 		const result = await con.execute(reports[index],[])
 		res.status(200).json(result.rows)
+		con.close()
 	}catch (err){
 		console.log(err)
 		res.status(500).json({"message":"Error"})
