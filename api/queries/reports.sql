@@ -52,23 +52,23 @@ JOIN LUGAR l ON u.ID_LUGAR=l.ID_LUGAR
 WHERE l.NOMBRE='1987 Delphine Well' AND t.NOMBRE LIKE 'Manejo%'
 ORDER BY v.NOMBRE ;
 
--- (pendiente) nombre, apellido y dirección de las víctimas que tienen menos
+--  OK nombre, apellido y dirección de las víctimas que tienen menos
 -- de 2 allegados los cuales hayan estado en un hospital y que se le
 -- hayan aplicado únicamente dos tratamientos
-SELECT * FROM (
-SELECT  v.NOMBRE  ,v.APELLIDO  ,v.DIRECCION FROM relacion r 
-JOIN VICTIMA v ON r.ID_VICTIMA=v.ID_VICTIMA 
-JOIN ASOCIADO a ON r.ID_ASOCIADO=a.ID_ASOCIADO
-WHERE v.nombre=a.NOMBRE AND  v.APELLIDO=a.APELLIDO 
-HAVING count(*)<2
-GROUP BY v.NOMBRE,v.APELLIDO,v.DIRECCION
-UNION 
-SELECT v.NOMBRE,v.APELLIDO,v.DIRECCION FROM OBSERVACION o 
-JOIN VICTIMA v ON o.ID_VICTIMA=v.ID_VICTIMA 
-HAVING count(*)=2
-GROUP BY v.NOMBRE,v.APELLIDO,v.DIRECCION) r
-ORDER BY r.NOMBRE;
-
+SELECT t.NOMBRE, t.APELLIDO, t.DIRECCION FROM (
+	SELECT v.id_victima,v.NOMBRE, v.APELLIDO, v.DIRECCION FROM VICTIMA v 
+	JOIN RELACION r ON v.id_victima=r.id_victima
+	WHERE v.id_hospital IS NOT NULL
+	GROUP BY v.id_victima,v.NOMBRE, v.APELLIDO, v.DIRECCION
+	HAVING count(r.id_relacion)<2) t
+JOIN (
+	SELECT v.id_victima,v.NOMBRE, v.APELLIDO, v.DIRECCION FROM VICTIMA v 
+	JOIN OBSERVACION o ON v.id_victima=o.id_victima
+	WHERE v.id_hospital IS NOT NULL
+	GROUP BY v.id_victima,v.NOMBRE, v.APELLIDO, v.DIRECCION
+	HAVING COUNT(o.id)=2) t1
+ON t.id_victima=t1.id_victima
+ORDER BY t.NOMBRE;
 
 --- OK-- número de mes de la fecha de la primera sospecha,
 -- nombre y apellido de las víctimas que más tratamientos se han

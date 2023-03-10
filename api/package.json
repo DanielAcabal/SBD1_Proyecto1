@@ -4,7 +4,7 @@
   "description": "Consultas a Db oracle",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon index.js"
+    "dev": "nodemon index.js"
   },
   "author": "DanielAcabal",
   "license": "ISC",

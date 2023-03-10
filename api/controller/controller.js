@@ -1,4 +1,3 @@
-let con;
 const connection = require("../connection/connection")
 const fs = require("fs")
 const readline = require("readline")
@@ -60,7 +59,7 @@ function loadData(req,res){
 		const result =  await con.executeMany(`INSERT INTO temporal (${fields}) VALUES (${binds.join(",")})`,data)
 		console.log(result.rowsAffected)
 		con.commit()
-		res.json({"Hola":"xd"})
+		res.json({"message":"Data uploaded successfully"})
 		con.close()
 	})
 	console.log("[*] Crear temporal",new Date())
