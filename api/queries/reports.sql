@@ -55,19 +55,19 @@ ORDER BY v.NOMBRE ;
 --  OK nombre, apellido y dirección de las víctimas que tienen menos
 -- de 2 allegados los cuales hayan estado en un hospital y que se le
 -- hayan aplicado únicamente dos tratamientos
-SELECT * FROM (
-SELECT  v.NOMBRE  ,v.APELLIDO  ,v.DIRECCION FROM relacion r 
+
+SELECT v2.NOMBRE,v2.APELLIDO,v2.DIRECCION  FROM VICTIMA v2 
+LEFT JOIN (SELECT  V.ID_VICTIMA FROM relacion r 
 JOIN VICTIMA v ON r.ID_VICTIMA=v.ID_VICTIMA 
 JOIN ASOCIADO a ON r.ID_ASOCIADO=a.ID_ASOCIADO
 WHERE v.nombre=a.NOMBRE AND  v.APELLIDO=a.APELLIDO 
-HAVING count(*)<2
-GROUP BY v.NOMBRE,v.APELLIDO,v.DIRECCION
-UNION 
-SELECT v.NOMBRE,v.APELLIDO,v.DIRECCION FROM OBSERVACION o 
+HAVING COUNT(*)<2 
+GROUP BY v.ID_VICTIMA)t ON v2.ID_VICTIMA=t.ID_VICTIMA
+JOIN (SELECT v.ID_VICTIMA FROM OBSERVACION o 
 JOIN VICTIMA v ON o.ID_VICTIMA=v.ID_VICTIMA 
 HAVING count(*)=2
-GROUP BY v.NOMBRE,v.APELLIDO,v.DIRECCION) r
-ORDER BY r.NOMBRE;
+GROUP BY v.ID_VICTIMA) t2 ON v2.ID_VICTIMA=t2.ID_VICTIMA
+ORDER BY v2.NOMBRE;
 
 --- OK-- número de mes de la fecha de la primera sospecha,
 -- nombre y apellido de las víctimas que más tratamientos se han
