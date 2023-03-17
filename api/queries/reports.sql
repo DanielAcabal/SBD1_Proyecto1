@@ -55,20 +55,19 @@ ORDER BY v.NOMBRE ;
 --  OK nombre, apellido y dirección de las víctimas que tienen menos
 -- de 2 allegados los cuales hayan estado en un hospital y que se le
 -- hayan aplicado únicamente dos tratamientos
-SELECT t.NOMBRE, t.APELLIDO, t.DIRECCION FROM (
-	SELECT v.id_victima,v.NOMBRE, v.APELLIDO, v.DIRECCION FROM VICTIMA v 
-	JOIN RELACION r ON v.id_victima=r.id_victima
-	WHERE v.id_hospital IS NOT NULL
-	GROUP BY v.id_victima,v.NOMBRE, v.APELLIDO, v.DIRECCION
-	HAVING count(r.id_relacion)<2) t
-JOIN (
-	SELECT v.id_victima,v.NOMBRE, v.APELLIDO, v.DIRECCION FROM VICTIMA v 
-	JOIN OBSERVACION o ON v.id_victima=o.id_victima
-	WHERE v.id_hospital IS NOT NULL
-	GROUP BY v.id_victima,v.NOMBRE, v.APELLIDO, v.DIRECCION
-	HAVING COUNT(o.id)=2) t1
-ON t.id_victima=t1.id_victima
-ORDER BY t.NOMBRE;
+SELECT * FROM (
+SELECT  v.NOMBRE  ,v.APELLIDO  ,v.DIRECCION FROM relacion r 
+JOIN VICTIMA v ON r.ID_VICTIMA=v.ID_VICTIMA 
+JOIN ASOCIADO a ON r.ID_ASOCIADO=a.ID_ASOCIADO
+WHERE v.nombre=a.NOMBRE AND  v.APELLIDO=a.APELLIDO 
+HAVING count(*)<2
+GROUP BY v.NOMBRE,v.APELLIDO,v.DIRECCION
+UNION 
+SELECT v.NOMBRE,v.APELLIDO,v.DIRECCION FROM OBSERVACION o 
+JOIN VICTIMA v ON o.ID_VICTIMA=v.ID_VICTIMA 
+HAVING count(*)=2
+GROUP BY v.NOMBRE,v.APELLIDO,v.DIRECCION) r
+ORDER BY r.NOMBRE;
 
 --- OK-- número de mes de la fecha de la primera sospecha,
 -- nombre y apellido de las víctimas que más tratamientos se han
@@ -85,7 +84,7 @@ ON t.tratamientos=ma OR t.tratamientos=mi
 ORDER BY t.mes_sospecha desc;
 
 -- ok -- porcentaje de víctimas que le corresponden a cada hospital (victimas totales)
-SELECT h.NOMBRE,h.DIRECCION , (sum(CASE WHEN v.ID_VICTIMA IS NOT NULL THEN 1 ELSE 0 end)/(SELECT count(*) FROM VICTIMA v2))*100 por_victimas FROM VICTIMA v
+SELECT h.NOMBRE,h.DIRECCION , (sum(CASE WHEN v.ID_VICTIMA IS NOT NULL THEN 1 ELSE 0 end)/(SELECT count(*) FROM VICTIMA v2 WHERE v2.ID_HOSPITAL IS NOT NULL))*100 por_victimas FROM VICTIMA v
 RIGHT JOIN HOSPITAL h ON v.ID_HOSPITAL=h.ID_HOSPITAL 
 WHERE h.ID_HOSPITAL IS NOT null
 GROUP BY h.NOMBRE,h.DIRECCION 
