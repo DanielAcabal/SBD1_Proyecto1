@@ -1,0 +1,8 @@
+node_modules
+modeloDB
+*.xlsx
+*.env
+**/*.localz
+**/*.local
+**/*.git
+**/*.DS_Store
